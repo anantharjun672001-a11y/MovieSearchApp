@@ -12,32 +12,42 @@ const Home = () => {
     const[type,setType]=useState("");
     const[error,setError]=useState("");
 
-    useEffect(()=>{
-        console.log("SEARCH VALUE:", search);
-        if(!search)return;
-        const fetchMovies=async()=>{
-            try{
+    useEffect(() => {
+        if (!search || search.length < 3) {
+            setMovies([]);
+            setError("");
+            return;
+        }
+
+        const timer = setTimeout(() => {
+            const fetchMovies = async () => {
+            try {
                 setError("");
-                 const res = await axios.get(
-                    `https://www.omdbapi.com/?s=${search}&page=${page}&type=${type}&apikey=4885446c`
+
+                const res = await axios.get(
+                `https://www.omdbapi.com/?s=${search}&page=${page}&type=${type}&apikey=4885446c`
                 );
 
+                console.log("API RESPONSE:", res.data);
 
-                    console.log("API RESPONSE:", res.data); // DEBUG
-                if(res.data.Response==="False"){
-                    setMovies([]);
-                    setError(res.data.Error);
-                }else{
-                    setMovies(res.data.Search);
+                if (res.data.Response === "False") {
+                setMovies([]);
+                setError(res.data.Error);
+                } else {
+                setMovies(res.data.Search);
                 }
-            }catch(err){
-                console.error("AXIOS ERROR ", err);
-                setError("Something Went Wrong. Please try Again.");
+            } catch (err) {
+                setError("Something went wrong");
             }
-        };
+            };
 
             fetchMovies();
-    },[search,page,type])
+        }, 600); 
+
+    return () => clearTimeout(timer);
+    }, [search, page, type]);
+
+
     return (
         <div>
             <h2>Movie Search</h2>
@@ -48,13 +58,17 @@ const Home = () => {
                 onChange={(value)=>{setType(value);setPage(1);}}
             />
            
-            {error && <p>{error}</p>}
-                <MovieList movies={movies}/>
-
-            {movies.length > 0 && (
-                <Pagination page={page} setPage={setPage} />
-            )}
             
+            {error && <p>{error}</p>}
+
+            {!error && movies.length > 0 && (
+            <>
+                <MovieList movies={movies} />
+                <Pagination page={page} setPage={setPage} />
+            </>
+            )}
+
+
         </div>
     );
 };
