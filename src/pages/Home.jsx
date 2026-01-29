@@ -5,8 +5,7 @@ import MovieList from '../components/MovieList';
 import Pagination from '../components/Pagination';
 import axios from 'axios';
 
-const Home = () => {
-    const[search,setSearch]=useState("");
+const Home = ({ search }) => {
     const[movies,setMovies]=useState([]);
     const[page,setPage]=useState(1);
     const[type,setType]=useState("");
@@ -49,11 +48,8 @@ const Home = () => {
 
 
     return (
-        <div>
-            <h2>Movie Search</h2>
-            <SearchBar
-                onSearch={(value)=>{setSearch(value);setPage(1);}}
-            />
+        <div  style={{ padding: "20px", maxWidth: "1200px", margin: "auto" }} >
+            
             <FilterDropdown
                 onChange={(value)=>{setType(value);setPage(1);}}
             />
