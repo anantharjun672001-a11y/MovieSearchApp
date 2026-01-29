@@ -1,11 +1,25 @@
 import React from 'react';
+const Pagination = ({ page, setPage }) => {
+  return (
+    <div style={{ textAlign: "center", marginBottom: "30px" }}>
+      <button
+        disabled={page === 1}
+        onClick={() => setPage(page - 1)}
+        style={{ marginRight: "10px" }}
+      >
+        Prev
+      </button>
 
-const Pagination = () => {
-    return (
-        <div>
-            <p>Pagination here..</p>
-        </div>
-    );
+      <span>Page {page}</span>
+
+      <button
+        onClick={() => setPage(page + 1)}
+        style={{ marginLeft: "10px" }}
+      >
+        Next
+      </button>
+    </div>
+  );
 };
 
 export default Pagination;

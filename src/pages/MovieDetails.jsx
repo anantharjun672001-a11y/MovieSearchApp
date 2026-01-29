@@ -31,8 +31,14 @@ const MovieDetails = () => {
   if (!movie) return <p>Loading...</p>;
 
   return (
-    <div>
-      <img src={movie.Poster} alt={movie.Title} />
+   
+    <div style={{ maxWidth: "800px", margin: "auto", padding: "20px" }}>
+        <img
+            src={movie.Poster}
+            alt={movie.Title}
+            style={{ width: "300px", float: "left", marginRight: "20px" }}
+        />
+      
       <h2>{movie.Title}</h2>
       <p><b>Year:</b> {movie.Year}</p>
       <p><b>Genre:</b> {movie.Genre}</p>
@@ -44,3 +50,6 @@ const MovieDetails = () => {
 };
 
 export default MovieDetails;
+
+
+

@@ -5,17 +5,17 @@ const MovieList = ({ movies }) => {
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-        gap: "20px"
+        gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
+        gap: "20px",
+        marginBottom: "30px"
       }}
     >
-     {movies.map((movie, index) => (
+      {movies.map((movie, index) => (
         <MovieCard
-            key={`${movie.imdbID}-${index}`} 
-            movie={movie}
+          key={`${movie.imdbID}-${index}`}
+          movie={movie}
         />
-        ))}
-
+      ))}
     </div>
   );
 };
