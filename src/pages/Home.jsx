@@ -19,17 +19,19 @@ const Home = () => {
             try{
                 setError("");
                  const res = await axios.get(
-                    `https://www.omdbapi.com/?s=${search}&page=${page}&type=${type}&apikey=9f6a1234`
-                    );
+                    `https://www.omdbapi.com/?s=${search}&page=${page}&type=${type}&apikey=4885446c`
+                );
+
 
                     console.log("API RESPONSE:", res.data); // DEBUG
-                if(res.data.Response===false){
+                if(res.data.Response==="False"){
                     setMovies([]);
                     setError(res.data.Error);
                 }else{
                     setMovies(res.data.Search);
                 }
             }catch(err){
+                console.error("AXIOS ERROR ", err);
                 setError("Something Went Wrong. Please try Again.");
             }
         };
