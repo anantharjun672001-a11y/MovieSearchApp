@@ -1,6 +1,6 @@
 import MovieCard from "./MovieCard";
 
-const MovieList = ({ movies }) => {
+const MovieList = ({ movies , favorites, setFavorites }) => {
   return (
     <div
       style={{
@@ -14,6 +14,8 @@ const MovieList = ({ movies }) => {
         <MovieCard
           key={`${movie.imdbID}-${index}`}
           movie={movie}
+          favorites={favorites}
+          setFavorites={setFavorites}
         />
       ))}
     </div>

@@ -9,7 +9,6 @@ const Navbar = ({ search, setSearch }) => {
           MovieApp
         </Link>
 
-        {/* Search Input */}
         <input
           type="text"
           placeholder="Search movies..."
@@ -29,6 +28,9 @@ const Navbar = ({ search, setSearch }) => {
               focus:ring-orange-300
             "
         />
+        <Link to="/favorites" className="text-white font-bold">
+         Favorites 
+        </Link>
         
 
       </div>

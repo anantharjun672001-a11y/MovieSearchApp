@@ -5,7 +5,7 @@ import MovieList from '../components/MovieList';
 import Pagination from '../components/Pagination';
 import axios from 'axios';
 
-const Home = ({ search }) => {
+const Home = ({ search, favorites, setFavorites }) => {
     const[movies,setMovies]=useState([]);
     const[page,setPage]=useState(1);
     const[type,setType]=useState("");
@@ -59,7 +59,8 @@ const Home = ({ search }) => {
 
             {!error && movies.length > 0 && (
             <>
-                <MovieList movies={movies} />
+                <MovieList movies={movies} favorites={favorites}
+                    setFavorites={setFavorites}/>
                 <Pagination page={page} setPage={setPage} />
             </>
             )}
